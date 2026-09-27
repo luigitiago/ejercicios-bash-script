@@ -1,0 +1,17 @@
+#!/bin/bash
+read  -p "Inserisci la data di nascita (GG/MM/AAAA): " data_nascita
+
+giorno=${data_nascita:0:2}
+mese=${data_nascita:3:2}
+anno=${data_nascita:6:4}
+
+anno_oggi=$(date +%Y)
+mese_oggi=$(date +%m)
+giorno_oggi=$(date +%d)
+
+eta=$((anno_oggi - anno))
+if [ "$mese_oggi" -lt "$mese" ] || \
+   { [ "mese_oggi" -eq "$mese" ] && [ "$giorno_oggi" ]; }; then
+   eta=$((eta - 1))
+fi
+echo "Hai $eta anni."
